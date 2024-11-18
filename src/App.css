@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Inter', 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #8E2DE2, #4A00E0);
+  background: linear-gradient(135deg, #00e1ff, #47e000);
   color: #333;
   display: flex;
   justify-content: center;
@@ -20,7 +20,14 @@ body {
   font-family: 'NobilityCasual';
   src: url('./NobilityCasual-pZdR.ttf') format('truetype');
 }
-
+@font-face {
+  font-family: 'SpButch';
+  src: url('./SpButchLiteMedium-rv229.otf')format('opentype');
+}
+@font-face {
+  font-family: 'Shiftynotes';
+  src: url('./ShiftyNotesRegular-BWZ6d.ttf')format('truetype');
+}
 .app-container {
   display: flex;
   min-height: 100vh;
@@ -31,7 +38,7 @@ body {
   left: 0;
   top: 0;
   height: 100vh;
-  background: rgba(74, 0, 224, 0.95);
+  background: rgba(0, 0, 0, 0.249);
   width: 60px;
   transition: width 0.3s ease;
   z-index: 1000;
@@ -47,8 +54,9 @@ body {
   height: 60px;
   background: none;
   border: none;
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: 24px;
+  font-family: 'SpButch', sans-serif;
   cursor: pointer;
 }
 
@@ -57,6 +65,8 @@ body {
   visibility: hidden;
   padding: 20px;
   color: white;
+  font-size: 1.5rem;
+  font-family: 'SpButch', sans-serif;
   transition: opacity 0.3s ease;
 }
 
@@ -88,7 +98,8 @@ body {
 }
 
 .hero-subtitle {
-  font-family: 'NobilityCasual', sans-serif;
+  font-family: 'SpButch', sans-serif;
+  font-weight: 1000;
   font-size: 2rem;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 40px;
@@ -101,6 +112,7 @@ body {
   border: none;
   border-radius: 50px;
   font-size: 1.2rem;
+  font-family: 'SpButch', sans-serif;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -111,6 +123,8 @@ body {
 
 .features-section,
 .steps-section {
+  font-family: 'SpButch', sans-serif;
+  font-weight: 1000;
   padding: 80px 40px;
 }
 
@@ -122,6 +136,8 @@ body {
 }
 
 .feature-card {
+  font-family: 'SpButch', sans-serif;
+  font-weight: 1000;
   background: white;
   padding: 30px;
   border-radius: 20px;
@@ -136,6 +152,8 @@ body {
 }
 
 .step-card {
+  font-family: 'SpButch', sans-serif;
+  font-weight: 1000;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -187,16 +205,24 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 30px;
-  border-bottom: 2px solid #e0e0e0;
+  padding: 20px 30px;
+  background: rgba(231, 42, 42, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
 }
 
 .app-title {
-  font-size: 2.5rem;
+  font-family: 'SpButch', sans-serif;
+  font-size: 4rem;
   font-weight: 700;
-  color: #4A00E0;
-  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff, #e0e0e0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
 }
 
 .connect-button {
@@ -218,6 +244,7 @@ body {
 }
 
 .task-details {
+  font-family: 'Shiftynotes', sans-serif;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -225,6 +252,7 @@ body {
 }
 
 .task-due-date, .task-priority {
+font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 14px;
   color: #666;
 }
@@ -241,6 +269,7 @@ body {
   border: 2px solid #e0e0e0;
   border-radius: 10px;
   font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   transition: all 0.3s ease;
 }
 
@@ -256,6 +285,7 @@ body {
   border: none;
   padding: 12px 24px;
   border-radius: 10px;
+  font-family: 'SpButch', sans-serif;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -314,14 +344,26 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  margin-bottom: 10px;
+  /* Remove the color inheritance */
+  color: white !important;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
 }
-
+.task-title,
+.task-due-date,
+.task-priority,
+.category,
+.tag {
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
 .task:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
@@ -345,9 +387,12 @@ body {
 }
 
 .task input[type="checkbox"] {
-  cursor: pointer;
+  /* Style the checkbox to be more visible */
   width: 20px;
   height: 20px;
+  border: 2px solid rgb(0, 255, 123);
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .task-controls {
@@ -377,10 +422,11 @@ body {
 }
 
 .tag {
-  background-color: #f0f0f0;
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 6px 12px;
   border-radius: 50px;
   font-size: 12px;
+  font-family: 'SpButch', sans-serif;
   font-weight: 500;
 }
 
@@ -391,4 +437,31 @@ body {
   border-radius: 50px;
   font-size: 12px;
   font-weight: 600;
+  font-family: 'SpButch', sans-serif;
+}
+.profile {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 12px 24px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.wallet-info, .task-stats {
+  font-family: 'SpButch', sans-serif;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 1000;
+  text-shadow: 0 2px 4px rgba(227, 71, 71, 0.2);
+}
+
+.task-stats {
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.974);
+  border-radius: 20px;
+  border: 5px solid rgb(7, 249, 181);
 }

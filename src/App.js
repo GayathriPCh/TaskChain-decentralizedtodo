@@ -145,9 +145,9 @@ function App() {
               ☰
             </button>
             <div className="nav-content">
-              <a href="#home">Home</a>
-              <a href="#features">Features</a>
-              <a href="#how-it-works">How It Works</a>
+              <a href="#home">Home</a> <br></br><br></br>
+              <a href="#features">Features</a> <br></br><br></br>
+              <a href="#how-it-works">How It Works</a><br></br><br></br>
               <a href="#get-started">Get Started</a>
             </div>
           </nav>
@@ -230,7 +230,7 @@ function App() {
   
           <div className="main-content">
             <header className="app-header">
-              <h1 className="app-title">Decentralized Todo List</h1>
+              <h1 className="app-title">Let's get <br></br> Productive! </h1>
               <div className="profile">
                 <p className="wallet-info">
                   Connected: {walletAddress.substring(0, 6)}...{walletAddress.slice(-4)}
