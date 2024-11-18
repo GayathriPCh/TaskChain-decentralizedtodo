@@ -16,7 +16,7 @@ function App() {
   const [contract, setContract] = useState(null);
   const [walletAddress, setWalletAddress] = useState("");
   const [isConnected, setIsConnected] = useState(false);
-
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
   useEffect(() => {
     if (isConnected && contract) {
       loadTasks();
@@ -111,84 +111,195 @@ function App() {
     );
     setTasks(updatedTasks);
   };
+  const features = [
+    {
+      title: "Decentralized Storage",
+      description: "Your tasks are stored on the blockchain, ensuring complete data ownership"
+    },
+    {
+      title: "Smart Categorization",
+      description: "Organize tasks with custom categories and tags"
+    },
+    {
+      title: "Priority Management",
+      description: "Set task priorities and due dates for better organization"
+    }
+  ];
 
+  const steps = [
+    "Connect your MetaMask wallet",
+    "Create your first task",
+    "Organize with categories and tags",
+    "Track your progress"
+  ];
   return (
-    <div className="App">
-      <header className="app-header">
-        <h1 className="app-title">Decentralized Todo List</h1>
-        {!isConnected ? (
-          <button onClick={connectWallet} className="connect-button">
-            Connect Wallet
-          </button>
-        ) : (
-          <div className="profile">
-            <p className="wallet-info">
-              Connected: {walletAddress.substring(0, 6)}...{walletAddress.slice(-4)}
-            </p>
-            <p className="task-stats">Tasks: {tasks.length}</p>
-          </div>
-        )}
-      </header>
-      {isConnected && (
-        <div className="content">
-          <div className="task-input">
-            <input
-              type="text"
-              value={newTask}
-              onChange={(e) => setNewTask(e.target.value)}
-              placeholder="Enter a new task..."
-              className="task-input-field"
-            />
-            <select
-              value={category}
-              onChange={handleCategoryChange}
-              className="category-select"
+    <div className="app-container">
+      {!isConnected ? (
+        // Landing Page
+        <>
+          <nav className={`vertical-nav ${isNavExpanded ? 'expanded' : ''}`}>
+            <button 
+              className="nav-toggle"
+              onClick={() => setIsNavExpanded(!isNavExpanded)}
             >
-              <option value="Work">Work</option>
-              <option value="Personal">Personal</option>
-              <option value="Urgent">Urgent</option>
-            </select>
-            <input
-              type="text"
-              value={tags}
-              onChange={(e) => setTags(e.target.value)}
-              placeholder="Enter tags (comma-separated)"
-              className="task-input-field"
-            />
-            <input
-              type="datetime-local"
-              value={dueDate}
-              onChange={(e) => setDueDate(e.target.value)}
-              className="task-input-field"
-            />
-            <select
-              value={priority}
-              onChange={handlePriorityChange}
-              className="category-select"
+              ☰
+            </button>
+            <div className="nav-content">
+              <a href="#home">Home</a>
+              <a href="#features">Features</a>
+              <a href="#how-it-works">How It Works</a>
+              <a href="#get-started">Get Started</a>
+            </div>
+          </nav>
+  
+          <main className="landing-page">
+            <section id="home" className="hero-section">
+              <h1 className="hero-title">TASKCHAIN</h1>
+              <p className="hero-subtitle">Your Tasks, Your Chain, Your Control</p>
+              <button onClick={connectWallet} className="cta-button">
+                Connect Wallet to Get Started
+              </button>
+            </section>
+  
+            <section id="features" className="features-section">
+              <h2>Why TaskChain?</h2>
+              <div className="features-grid">
+                <div className="feature-card">
+                  <h3>Decentralized Storage</h3>
+                  <p>Your tasks are stored on the blockchain, ensuring complete data ownership</p>
+                </div>
+                <div className="feature-card">
+                  <h3>Smart Categorization</h3>
+                  <p>Organize tasks with custom categories and tags</p>
+                </div>
+                <div className="feature-card">
+                  <h3>Priority Management</h3>
+                  <p>Set task priorities and due dates for better organization</p>
+                </div>
+              </div>
+            </section>
+  
+            <section id="how-it-works" className="steps-section">
+              <h2>How It Works</h2>
+              <div className="steps-container">
+                <div className="step-card">
+                  <div className="step-number">1</div>
+                  <p>Connect your MetaMask wallet</p>
+                </div>
+                <div className="step-card">
+                  <div className="step-number">2</div>
+                  <p>Create your first task</p>
+                </div>
+                <div className="step-card">
+                  <div className="step-number">3</div>
+                  <p>Organize with categories and tags</p>
+                </div>
+                <div className="step-card">
+                  <div className="step-number">4</div>
+                  <p>Track your progress</p>
+                </div>
+              </div>
+            </section>
+          </main>
+        </>
+      ) : (
+        // Todo List Application
+        <div className="todo-app">
+          <nav className={`vertical-nav ${isNavExpanded ? 'expanded' : ''}`}>
+            <button 
+              className="nav-toggle"
+              onClick={() => setIsNavExpanded(!isNavExpanded)}
             >
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
-            <button onClick={addTask} className="add-task-button">
-              Add Task
+              ☰
             </button>
+            <div className="nav-content">
+              <div className="nav-section">
+                <h3>Getting Started</h3>
+                <p>1. Add a new task using the input field</p>
+                <p>2. Set category and priority</p>
+                <p>3. Add tags for better organization</p>
+              </div>
+              <div className="nav-section">
+                <h3>Features</h3>
+                <p>• Color code your tasks</p>
+                <p>• Filter by categories</p>
+                <p>• Track completion status</p>
+              </div>
+            </div>
+          </nav>
+  
+          <div className="main-content">
+            <header className="app-header">
+              <h1 className="app-title">Decentralized Todo List</h1>
+              <div className="profile">
+                <p className="wallet-info">
+                  Connected: {walletAddress.substring(0, 6)}...{walletAddress.slice(-4)}
+                </p>
+                <p className="task-stats">Tasks: {tasks.length}</p>
+              </div>
+            </header>
+  
+            <div className="content">
+              <div className="task-input">
+                <input
+                  type="text"
+                  value={newTask}
+                  onChange={(e) => setNewTask(e.target.value)}
+                  placeholder="Enter a new task..."
+                  className="task-input-field"
+                />
+                <select
+                  value={category}
+                  onChange={handleCategoryChange}
+                  className="category-select"
+                >
+                  <option value="Work">Work</option>
+                  <option value="Personal">Personal</option>
+                  <option value="Urgent">Urgent</option>
+                </select>
+                <input
+                  type="text"
+                  value={tags}
+                  onChange={(e) => setTags(e.target.value)}
+                  placeholder="Enter tags (comma-separated)"
+                  className="task-input-field"
+                />
+                <input
+                  type="datetime-local"
+                  value={dueDate}
+                  onChange={(e) => setDueDate(e.target.value)}
+                  className="task-input-field"
+                />
+                <select
+                  value={priority}
+                  onChange={handlePriorityChange}
+                  className="category-select"
+                >
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
+                <button onClick={addTask} className="add-task-button">
+                  Add Task
+                </button>
+              </div>
+              <div className="task-filters">
+                <button onClick={() => setCategory("All")} className="filter-button">
+                  All
+                </button>
+                <button onClick={() => setCategory("Work")} className="filter-button">
+                  Work
+                </button>
+                <button onClick={() => setCategory("Personal")} className="filter-button">
+                  Personal
+                </button>
+                <button onClick={() => setCategory("Urgent")} className="filter-button">
+                  Urgent
+                </button>
+              </div>
+              <TaskList tasks={filterTasks(tasks, category)} onToggleTask={toggleTask} onChangeColor={onChangeColor} />
+            </div>
           </div>
-          <div className="task-filters">
-            <button onClick={() => setCategory("All")} className="filter-button">
-              All
-            </button>
-            <button onClick={() => setCategory("Work")} className="filter-button">
-              Work
-            </button>
-            <button onClick={() => setCategory("Personal")} className="filter-button">
-              Personal
-            </button>
-            <button onClick={() => setCategory("Urgent")} className="filter-button">
-              Urgent
-            </button>
-          </div>
-          <TaskList tasks={filterTasks(tasks, category)} onToggleTask={toggleTask} onChangeColor={onChangeColor} />
         </div>
       )}
     </div>
